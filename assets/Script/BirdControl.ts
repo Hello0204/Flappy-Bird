@@ -12,7 +12,7 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class BirdControl extends cc.Component {
 
-    //Speed of bird
+    // Tốc độ ban đầu của Bird
     speed: number = 0;
 
     // assign of main Control component
@@ -23,13 +23,13 @@ export default class BirdControl extends cc.Component {
         this.mainControl = cc.Canvas.instance.node.getComponent("MainControl");
     }
 
-    // hàm cập nhật lại tốc độ khi có sự kiện phản hồi
+    // Hàm cập nhật lại tốc độ khi có sự kiện chạm màn hình
     onTouchStart (event: cc.Event.EventTouch) {
         this.speed = 2;
         this.mainControl.audioSourceControl.playSound(SoundType.E_Sound_Fly);
     }
 
-    // game over
+    // Game over
     onCollisionEnter (other: cc.Collider, self: cc.Collider) {
         // collider tag is 0, that means the bird have a collision with pipe, then game over
         if (other.tag === 0) {
@@ -64,8 +64,7 @@ export default class BirdControl extends cc.Component {
     // set tốc độ rơi thẳng
         this.speed -= 0.05;
         this.node.y += this.speed;
-        console.log(this.node.y);
-    
+        
     // set góc nghiêng (góc quay của rotation) khi Bird bay lên
         var angle = -(this.speed/2) * 30;
         if (angle >= 30) {
